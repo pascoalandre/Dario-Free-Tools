@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gerador SNI</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+  <div class="container mt-4">
+    <!-- Gerador de SNI -->
+    <section id="sni" class="mb-5">
+      <h2>Gerador de SNI</h2>
+      <form id="sniForm">
+        <select class="form-select mb-3" id="operadoraSelect">
+          <option selected disabled>Seleciona a operadora</option>
+          <option value="unitel">Unitel</option>
+          <option value="movicel">Movicel</option>
+          <option value="africell">Africell</option>
+        </select>
+        <button type="submit" class="btn btn-success">Mostar SNIs</button>
+      </form>
+      <div class="mt-3" id="resultadoSNI" style="display: none;">
+        <h5>SNIs disponíveis:</h5>
+        <ul class="list-group" id="sniOutput"></ul>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    const snis = {
+      unitel: [
+        "unitelcg.giftedus.online",
+        "angolamove.unitel.ao",
+        "graph.facebook.com",
+        "cdn.polyfill.io",
+        "comprasaldo.co.ao",
+        "investors.spotify.com",
+        "unitelmoney.ao",
+        "Proxy:104.18.14.151:80",
+        "Payload:GET /cdn-cgi/trace HTTP/1.1[crlf]Host: ib.bancobai.ao[crlf][crlf]GET-RAY / HTTP/1.1[crlf]Host: servername [crlf] Connection: Upgrade[crlf]User-Agent: [ua][crlf]Upgrade: websocket[crlf][crlf]"
+        ],
+      movicel: [
+        "162.159.128.79",
+        "pagamentonline.emis.co.ao",
+        "movicel.co.ao",
+        "internet.movicel.co.ao",
+        "www.uon.ed.ao"
+        
+      ],
+      africell: [
+        "pagamentonline.emis.co.ao",
+        "91.220.208.64",
+        "connect.africell.ao",
+        "premierbetzone.com",
+        "www.mcexpress.emis.com",
+        "support.canvas.snapchat.com",
+        "care.africell.ao",
+        "m.whatsapp.com",
+        "fonts.googleapis.com"
+      ]
+    };
+
+    const form = document.getElementById('sniForm');
+    const operadoraSelect = document.getElementById('operadoraSelect');
+    const sniOutput = document.getElementById('sniOutput');
+    const resultadoDiv = document.getElementById('resultadoSNI');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const operadora = operadoraSelect.value;
+      sniOutput.innerHTML = ''; // limpa lista anterior
+      if (snis[operadora]) {
+        snis[operadora].forEach(sni => {
+          const li = document.createElement('li');
+          li.className = 'list-group-item';
+          li.textContent = sni;
+          sniOutput.appendChild(li);
+        });
+        resultadoDiv.style.display = 'block';
+      }
+    });
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
